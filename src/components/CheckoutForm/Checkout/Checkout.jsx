@@ -5,9 +5,14 @@ import useStyles from './styels'
 import AddressForm from '../AddresForm'
 import PaymentForm from '../PaymentForm'
 import {commerce} from '../../../lib/commerce'
+import {useAuth} from '../../../contexts/AuthContext'
 
 const steps = ['Shipping address', 'Payment details']
-const Checkout = ({cart, order, onCaptureCheckout, error}) => {
+const Checkout = () => {
+
+
+    const {cart, order, onCaptureCheckout, error} = useAuth()
+
     const [activeStep, setActiveStep] = useState(0)
     const [checkoutToken, setCkeckoutToken] = useState(null)
     const [shippingData, setShippingData] = useState({})
@@ -21,13 +26,14 @@ const Checkout = ({cart, order, onCaptureCheckout, error}) => {
                 console.log(token)
                 setCkeckoutToken(token)
             } catch(error){
+                console.log(error)
                 history.pushState('/')
             }
         }
 
         generateToken()
   
-    },[cart])
+    },[cart, history])
 
     const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1)
     const backStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1)

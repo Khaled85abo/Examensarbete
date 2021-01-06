@@ -1,69 +1,187 @@
 import React, {useRef, useState} from 'react'
-import {Link, useHistory} from 'react-router-dom'
-import {Form, Button, Card, Alert} from 'react-bootstrap'
+import {useHistory} from 'react-router-dom'
 import {useAuth} from '../contexts/AuthContext'
 
+import Alert from '@material-ui/lab/Alert'
+import {Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Grid, Box, Typography, Container} from '@material-ui/core'
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import { makeStyles } from '@material-ui/core/styles';
 
 
- 
-export default function SignUp() {
 
-    const emailRef = useRef()
-    const passwordRef = useRef()
-    const passwordConfirmRef = useRef()
-    const {signup} = useAuth()
-    const history = useHistory()
-    const [error, setError] = useState('')
-    const [loading, setLoading] = useState(false)
-
-
-    async function handleSubmit(e) {
-        e.preventDefault()
-        console.log(emailRef.current.value)
-
-
-        // if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-        //     return setError("Passwords do not match")
-        // }
-        // try{
-        //     setError('')
-        //     setLoading(true)
-        //   await  signup(emailRef.current.value, passwordRef.current.value)
-        //     history.push('/')
-        // } catch(error){
-        //     setError('Failed to create an account')
-        // }
-        // setLoading(false)
-    }
-    return (
-        <>
-            <Card>
-                <Card.Body>
-                    <h2 className='text-center mb-4'>Sign Up</h2>
-                    {error && <Alert variant='danger'>{error}</Alert>}
-                    <Form  onSubmit={handleSubmit}>
-                        <Form.Group id='email'>
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control type='email' ref={emailRef} required />
-                        </Form.Group>
-                   
-                        <Form.Group id='password'>
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control type='password' ref={passwordRef} required />
-                        </Form.Group>
-              
-                        <Form.Group id='password-confirm'>
-                            <Form.Label>Password Confirmation</Form.Label>
-                            <Form.Control type='password' ref={passwordConfirmRef} required />
-                        </Form.Group>
-                        <Button disabled={loading} className='w-100' type='submit'>Sign Up</Button>
-                    </Form>
-                </Card.Body>
-            </Card>
-            <div className='w-100 text-center mt-2'>
-                Already have an Account? <Link to='/login'>Log In</Link>
-            </div>
-        </>
-    )
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Stevia
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
 }
 
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(3),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
+
+
+
+export default function SignUp() {
+  const classes = useStyles();
+  const emailRef = useRef()
+  const passwordRef = useRef()
+  const passwordConfirmRef = useRef()
+  const {signup} = useAuth()
+  const history = useHistory()
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+
+
+  async function handleSubmit(e) {
+    e.preventDefault()
+    console.log(emailRef.current.value)
+
+
+    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+        return setError("Passwords do not match")
+    }
+    try{
+        setError('')
+        setLoading(true)
+      await  signup(emailRef.current.value, passwordRef.current.value)
+        history.push('/')
+    } catch(error){
+        setError(error.message)
+    }
+    setLoading(false)
+}
+
+
+
+
+  return (
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign up
+        </Typography>
+        <form className={classes.form} noValidate onSubmit={handleSubmit}>
+          <Grid container spacing={2}>
+            {/* <Grid item xs={12} sm={6}>
+              <TextField
+                autoComplete="fname"
+                name="firstName"
+                variant="outlined"
+                required
+                fullWidth
+                id="firstName"
+                label="First Name"
+                autoFocus
+              />
+            </Grid> */}
+            {/* <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="lastName"
+                label="Last Name"
+                name="lastName"
+                autoComplete="lname"
+              />
+            </Grid> */}
+            <Grid xs={12}>
+          {error ? (<Alert severity="warning">{error}</Alert>) : ''}
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                inputRef={emailRef}
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                inputRef={passwordRef} 
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                inputRef ={passwordConfirmRef} 
+                name="password-confirm"
+                label="Password Confirmation"
+                type="password"
+                id="password-confirm"
+                autoComplete="current-password"
+              />
+            </Grid>
+            {/* <Grid item xs={12}>
+              <FormControlLabel
+                control={<Checkbox value="allowExtraEmails" color="primary" />}
+                label="I want to receive inspiration, marketing promotions and updates via email."
+              />
+            </Grid> */}
+          </Grid>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+            disabled={loading}
+          >
+            Sign Up
+          </Button>
+          <Grid container justify="flex-end">
+            <Grid item>
+              <Link href="/login" variant="body2">
+                Already have an account? Log in
+              </Link>
+            </Grid>
+          </Grid>
+        </form>
+      </div>
+
+    </Container>
+  );
+
+
+}

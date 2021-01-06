@@ -65,4 +65,8 @@ export default makeStyles((theme) => ({
       width: '20ch',
     },
   },
+  moto: {
+    fontFamily: 'Arizonia',
+    letterSpacing: '2px',
+  },
 }));
