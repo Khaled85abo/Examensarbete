@@ -1,10 +1,9 @@
 import React, {useRef, useState} from 'react'
 import {useHistory} from 'react-router-dom'
-import {useAuth} from '../contexts/AuthContext'
+import {useAuth} from '../../contexts/AuthContext'
 import Alert from '@material-ui/lab/Alert'
 import { Button, CssBaseline, TextField, Link, Grid, Box, Typography, Container} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
-import Copyright from './CopyRight'
 
 
 

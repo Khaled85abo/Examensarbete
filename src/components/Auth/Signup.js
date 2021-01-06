@@ -1,6 +1,6 @@
 import React, {useRef, useState} from 'react'
 import {useHistory} from 'react-router-dom'
-import {useAuth} from '../contexts/AuthContext'
+import {useAuth} from '../../contexts/AuthContext'
 
 import Alert from '@material-ui/lab/Alert'
 import {Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Grid, Box, Typography, Container} from '@material-ui/core'
