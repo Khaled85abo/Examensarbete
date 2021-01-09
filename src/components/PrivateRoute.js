@@ -6,7 +6,6 @@ import {useLocation} from 'react-router-dom'
 export default function PrivateRoute ({component: Component,  ...rest}){
     const location = useLocation()
 const{currentUser} = useAuth()
-console.log(currentUser)
     return (
             
         <Route {...rest}

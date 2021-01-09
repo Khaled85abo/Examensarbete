@@ -84,7 +84,8 @@ export function AuthProvider ({children})  {
         logout, 
         resetPassword,
         updateEmail,
-        updatePassword
+        updatePassword,
+        onCapturecheckout
     }
     return (
         <AuthContext.Provider value={value}>

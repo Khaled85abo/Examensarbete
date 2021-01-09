@@ -6,6 +6,10 @@ import FormInput from './CustomTextField'
 import {commerce} from '../../lib/commerce'
 
 const AddresForm = ({checkoutToken, next}) => {
+    console.log('inside address form')
+    console.log(checkoutToken)
+
+
     const [shippingCountries, setShippingCoutnries] = useState([])
     const [shippingCountry, setShippingCoutnry] = useState('')
     const [shippingSubdivisions, setShippingSubdivisions] = useState([])
@@ -19,10 +23,15 @@ const AddresForm = ({checkoutToken, next}) => {
     const options = shippingOptions.map((sO) => ({id: sO.id, label: `${sO.description} - (${sO.price.formatted_with_symbol})`}))
 
     const fetchShippingCountries = async (checkoutTokenId) => {
+        // commerce.services.localeListShippingCountries(checkoutTokenId)
+        // .then((response) => console.log(response));
+        
         const {countries} = await commerce.services.localeListShippingCountries(checkoutTokenId)
+        //const {countries} = await commerce.services.localeListShippingCountries(checkoutTokenId)
         setShippingCoutnries(countries)
         setShippingCoutnry(Object.keys(countries)[0])
         console.log(countries)
+        
     }
 
     const fetchSubdivsions = async (countryCode) => {
@@ -39,6 +48,7 @@ const AddresForm = ({checkoutToken, next}) => {
 
     useEffect(()=> {
         fetchShippingCountries(checkoutToken.id)
+     
     }, [])
 
     useEffect(() => {

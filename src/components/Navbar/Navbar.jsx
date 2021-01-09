@@ -15,8 +15,7 @@ const Navbar = ({totalItems}) => {
     const { currentUser, logout } = useAuth()
 
 
-console.log('location: ' + location.pathname)
-console.log(history.location.pathname)
+
 
 
     
@@ -40,24 +39,34 @@ console.log(history.location.pathname)
                 <Toolbar>
                     <Typography component={Link} to='/' variant='h6' className={classes.title} color='inherit'>
                         <img src={logo} alt='commerce.js' height='25px' className={classes.image} />
-                        <span className={classes.moto}>For a Healthy Life</span>
+                        <span className={classes.moto}>Healthy Life</span>
                     </Typography>
-                    <div style={{display: 'flex', flexDirection: 'column'}}>
-
+                   
+                    <div className={classes.grow} />
+                    <div >
                         { currentUser 
                         ? (
-                            <div>
-                                <Typography  component={Link}  onClick={handleLogout}>Log Out</Typography>
+                            <div >
+                                <Typography  component={Link}  onClick={handleLogout} style={{marginRight: '10px'}}>Log Out</Typography>
                                 <Typography  component={Link} to='/update-profile' >Profile</Typography>
                             </div>
                         ) 
                         :  <Typography  component={Link} to='/login' >Log In</Typography>
-
                         }
-                   
                     </div>
-                    <div className={classes.grow} />
-                    {location.pathname === '/' &&   (
+
+                    { location.pathname === '/cart' || location.pathname === '/checkout' 
+                    ? ('') 
+                    :  (<div className={classes.button}>
+                        <IconButton component={Link} to='/cart' aria-label='show cart item' color='inherit' >
+                            <Badge badgeContent={totalItems}  color='secondary'>
+                                <ShoppingCart />
+                            </Badge>
+                        </IconButton>
+                        </div>)  
+                    }
+
+                    {/* {location.pathname === '/' &&   (
                     <div className={classes.button}>
                          <IconButton component={Link} to='/cart' aria-label='show cart item' color='inherit' >
                              <Badge badgeContent={totalItems}  color='secondary'>
@@ -65,7 +74,7 @@ console.log(history.location.pathname)
                              </Badge>
                          </IconButton>
                      </div>
-                    )}
+                    )} */}
                    
                 </Toolbar>
             </AppBar>

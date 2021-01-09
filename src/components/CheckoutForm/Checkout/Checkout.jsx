@@ -23,11 +23,12 @@ const Checkout = () => {
         const generateToken = async() => {
             try{
                 const token = await commerce.checkout.generateToken(cart.id, {type: 'cart'})
-                console.log(token)
+                console.log('the generated token')
+                console.log( token)
                 setCkeckoutToken(token)
             } catch(error){
                 console.log(error)
-                history.pushState('/')
+                history.push('/')
             }
         }
 
