@@ -1,9 +1,10 @@
 import React from 'react'
 import {Typography, Button, Card, CardActions, CardMedia, CardContent} from '@material-ui/core'
 import useSyles from './styles'
+import {useAuth} from '../../../contexts/AuthContext'
+const CartItem = ({item}) => {
 
-const CartItem = ({item, handleRemoveFromCart, handleUpdateCartQty}) => {
-
+    const {handleRemoveFromCart, handleUpdateCartQty} = useAuth()
     const classes = useSyles()
     return (
         <Card>

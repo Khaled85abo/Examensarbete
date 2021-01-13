@@ -6,8 +6,7 @@ import FormInput from './CustomTextField'
 import {commerce} from '../../lib/commerce'
 
 const AddresForm = ({checkoutToken, next}) => {
-    console.log('inside address form')
-    console.log(checkoutToken)
+    
 
 
     const [shippingCountries, setShippingCoutnries] = useState([])
@@ -16,7 +15,9 @@ const AddresForm = ({checkoutToken, next}) => {
     const [shippingSubdivision, setShippingSubdivision] = useState('')
     const [shippingOptions, setShippingOptions] = useState([])
     const [shippingOption, setShippingOption] = useState('')
+    const [shippingPrice, setShippingPrice] = useState()
     const methods = useForm();
+
 
     const countries = Object.entries(shippingCountries).map(([code, name]) => ({id:code, label:name}))
     const subdivisions = Object.entries(shippingSubdivisions).map(([code, name]) => ({id:code, label:name}))
@@ -30,7 +31,6 @@ const AddresForm = ({checkoutToken, next}) => {
         //const {countries} = await commerce.services.localeListShippingCountries(checkoutTokenId)
         setShippingCoutnries(countries)
         setShippingCoutnry(Object.keys(countries)[0])
-        console.log(countries)
         
     }
 
@@ -44,6 +44,14 @@ const AddresForm = ({checkoutToken, next}) => {
         const options = await commerce.checkout.getShippingOptions(checkoutTokenId, {country, region})
         setShippingOptions(options)
         setShippingOption(options[0].id)
+
+        setShippingPrice(options[0].price.raw)
+        // console.log(shippingPrice)
+        // console.log('inside fetching shipping options')
+
+        // console.log(shippingOptions)
+        // console.log(shippingOption)
+
     }
 
     useEffect(()=> {
@@ -63,7 +71,7 @@ const AddresForm = ({checkoutToken, next}) => {
         <>
             <Typography variant='h6' gutterBottom>Shipping Address</Typography>
             <FormProvider {...methods}>
-            <form onSubmit={methods.handleSubmit((data) => next({ ...data, shippingCountry, shippingSubdivision, shippingOption }))}>
+            <form onSubmit={methods.handleSubmit((data) => next({ ...data, shippingCountry, shippingSubdivision, shippingOption, shippingPrice }))}>
                     <Grid container spacing={3}>
                         <FormInput  name='firstName' label='First Name' />
                         <FormInput  name='lasstName' label='Last Name' />

@@ -7,7 +7,12 @@ export default makeStyles(() => ({
   },
   media: {
     height: 260,
-    paddingTop: '56.25%', // 16:9
+    width: 200,
+    objectFit: 'cover',
+    margin: 'auto',
+    marginTop: '10px',
+    // paddingTop: '56.25%', // 16:9
+
   },
   cardActions: {
     display: 'flex',

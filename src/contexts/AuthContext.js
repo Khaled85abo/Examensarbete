@@ -15,10 +15,10 @@ export function AuthProvider ({children})  {
     const [cart, setCart] = useState({})
     const [order, setOrder] = useState({})
     const [errorMessage, setErrorMessage] = useState('')
-   
-    const fetchCart = async () =>{
-        setCart(await commerce.cart.retrieve())
-    }
+    const [products, setProducts] = useState([])
+    const [previousRoute, setPreviousRoute] = useState('/')
+
+  
 
     function signup(email, password) {
         return auth.createUserWithEmailAndPassword(email, password)
@@ -47,6 +47,36 @@ export function AuthProvider ({children})  {
 
     // ADDING PRODUCT FUNCTIONALITY TO REACT CONTEXT
 
+    const fetchProducts = async () => {
+        const {data} = await commerce.products.list()
+
+        setProducts(data)
+    }
+
+    const fetchCart = async () =>{
+        setCart(await commerce.cart.retrieve())
+    }
+
+    const handleAddToCart = async (productId, quantity) => {
+        const {cart} = await commerce.cart.add(productId, quantity)
+        setCart(cart)
+    }
+
+    const handleUpdateCartQty = async (productId, quantity) => {
+        const response = await commerce.cart.update(productId, {quantity})
+        setCart(response.cart)
+    }
+
+    const handleRemoveFromCart = async (productId) => {
+        const {cart} = await commerce.cart.remove(productId)
+        setCart(cart)
+    }
+
+    const handleEmptyCart = async () => {
+        const {cart} = await commerce.cart.empty()
+        setCart(cart)
+    }
+
  
     const refreshCart = async () => {
         const newCart = await commerce.cart.refresh()
@@ -65,7 +95,9 @@ export function AuthProvider ({children})  {
 
     useEffect(() =>{
 
+        fetchProducts()
         fetchCart()
+
        const unnsubscribe = auth.onAuthStateChanged(user => {
            setCurrentUser(user)
            setLoading(false)
@@ -74,18 +106,32 @@ export function AuthProvider ({children})  {
 
     },[])
 
+    // useEffect(()=> {
+    //     fetchProducts()
+    //     fetchCart()
+    // },[])
+
     const value ={
+        previousRoute,
+        setPreviousRoute,
+        products,
         order,
         errorMessage,
         cart,
         currentUser,
+        setCart,
         signup,
         login,
         logout, 
         resetPassword,
         updateEmail,
         updatePassword,
-        onCapturecheckout
+        onCapturecheckout,
+        refreshCart,
+        handleAddToCart,
+        handleRemoveFromCart,
+        handleUpdateCartQty,
+        handleEmptyCart,
     }
     return (
         <AuthContext.Provider value={value}>

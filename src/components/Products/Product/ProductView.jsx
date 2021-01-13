@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useParams, Link } from 'react-router-dom'
 import {useStyles} from './coolshopstyles'
+import {useAuth} from '../../../contexts/AuthContext'
 import {
     Box,
     Button,
@@ -15,7 +16,9 @@ import {
   } from '@material-ui/core';
   import { Alert } from '@material-ui/lab';
 
-const ProductView = ({products, onAddToCart }) => {
+const ProductView = () => {
+
+  const {products, handleAddToCart} = useAuth()
     const productId = useParams()
  
     const classes = useStyles()
@@ -78,7 +81,7 @@ const ProductView = ({products, onAddToCart }) => {
                                       Status
                                     </Grid>
                                     <Grid item xs={6}>
-                                     <Button color='primary' onClick={() => onAddToCart(product.id, 1)}>Buy</Button>
+                                     <Button color='primary' onClick={() => handleAddToCart(product.id, 1)}>Buy</Button>
                                      
                                       {/* {product.quantity > 0 ? (
                                         <Alert icon={false} severity="success">

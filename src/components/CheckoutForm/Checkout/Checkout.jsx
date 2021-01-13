@@ -10,8 +10,8 @@ import {useAuth} from '../../../contexts/AuthContext'
 const steps = ['Shipping address', 'Payment details']
 const Checkout = () => {
 
-
-    const {cart, order, onCaptureCheckout, error} = useAuth()
+    console.log('inside checkout')
+    const {cart, order,  error, setPreviousRoute} = useAuth()
 
     const [activeStep, setActiveStep] = useState(0)
     const [checkoutToken, setCkeckoutToken] = useState(null)
@@ -20,6 +20,7 @@ const Checkout = () => {
     const classes = useStyles()
     const history = useHistory()
     useEffect(()=>{
+        console.log('insdie checkout useEffect')
         const generateToken = async() => {
             try{
                 const token = await commerce.checkout.generateToken(cart.id, {type: 'cart'})
@@ -31,6 +32,7 @@ const Checkout = () => {
                 history.push('/')
             }
         }
+
 
         generateToken()
   
@@ -60,7 +62,7 @@ const Checkout = () => {
                 <Typography variant = 'subtitle2'>Order ref: {order.customer_reference}</Typography>
             </div>
             <br />
-            <Button component={Link} to='/' variant='outlined' type='button'>Back to Home</Button>
+            <Button   component={Link} to='/'     variant='outlined' type='button'>Back to Home</Button>
         </>
     ) : isFinished ? (
         <>
@@ -71,7 +73,8 @@ const Checkout = () => {
                 <Divider className={classes.divider} />
             </div>
             <br />
-            <Button component={Link} to='/' variant='outlined' type='button'>Back to Home</Button>
+            <Button 
+            component={Link} to='/'   variant='outlined' type='button'>Back to Home</Button>
         </>
     ) : (
         <div className={classes.spinner}>
@@ -87,14 +90,19 @@ const Checkout = () => {
         </>
     }
 
-    const Form = () => activeStep === 0 ? 
-    <AddressForm checkoutToken={checkoutToken} next={next}/> : 
+    const Form = () => activeStep === 0 
+    ?
+    <AddressForm 
+    checkoutToken={checkoutToken} 
+    next={next}
+    />
+    : 
     <PaymentForm 
     shippingData={shippingData} 
     checkoutToken={checkoutToken} 
     backStep={backStep} 
     nextStep={nextStep} 
-    onCaptureCheckout={onCaptureCheckout}
+    // onCaptureCheckout={onCaptureCheckout}
     timeout={timeout}/>
 
 

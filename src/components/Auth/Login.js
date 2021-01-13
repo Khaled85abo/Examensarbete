@@ -52,7 +52,7 @@ export default function SignUp() {
         setError('')
         setLoading(true)
       await  login(emailRef.current.value, passwordRef.current.value)
-        history.push('/')
+        history.goBack()
     } catch(error){
         setError(error.message)
     }

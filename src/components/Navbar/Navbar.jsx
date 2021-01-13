@@ -6,13 +6,15 @@ import {Link, useLocation,  useHistory} from 'react-router-dom'
 import {useAuth} from '../../contexts/AuthContext'
 import useStyles from './styles'
 
-const Navbar = ({totalItems}) => {
+const Navbar = () => {
+
 
     const classes = useStyles()
     const location = useLocation()
     const history = useHistory()
     const[error, setError] = useState('')
-    const { currentUser, logout } = useAuth()
+    const { currentUser, logout, cart } = useAuth()
+    const totalItems = cart.total_items
 
 
 
