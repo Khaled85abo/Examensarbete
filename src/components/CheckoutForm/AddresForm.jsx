@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
-import {InputLabel, Select, MenuItem, Button , Grid, Typography} from '@material-ui/core'
+import {InputLabel, Select, MenuItem, Button , Grid, Typography, CircularProgress} from '@material-ui/core'
 import {useForm, FormProvider} from 'react-hook-form'
 import FormInput from './CustomTextField'
 import {commerce} from '../../lib/commerce'
@@ -73,12 +73,16 @@ const AddresForm = ({checkoutToken, next}) => {
             <FormProvider {...methods}>
             <form onSubmit={methods.handleSubmit((data) => next({ ...data, shippingCountry, shippingSubdivision, shippingOption, shippingPrice }))}>
                     <Grid container spacing={3}>
+
+                        
                         <FormInput  name='firstName' label='First Name' />
-                        <FormInput  name='lasstName' label='Last Name' />
+                        <FormInput  name='lastName' label='Last Name' />
                         <FormInput  name='address' label='Address' />
                         <FormInput  name='email' label='Email' />
                         <FormInput  name='city' label='City' />
                         <FormInput name='zip' label='Postal Code' />
+
+
                         <Grid item xs={12} sm={6}>
                             <InputLabel>Shipping Country</InputLabel>
                             <Select value={shippingCountry} fullWidth onChange={(e) => setShippingCoutnry(e.target.value)}>
@@ -89,7 +93,7 @@ const AddresForm = ({checkoutToken, next}) => {
                                 ))}
                             </Select>
                         </Grid>
-                         <Grid item xs={12} sm={6}>
+                        <Grid item xs={12} sm={6}>
                             <InputLabel>Shipping Subdivison</InputLabel>
                             <Select value={shippingSubdivision} fullWidth onChange={(e) => setShippingSubdivision(e.target.value)}>
                                 {subdivisions.map((subdivision) => (
@@ -103,7 +107,7 @@ const AddresForm = ({checkoutToken, next}) => {
                             <InputLabel>Shipping Options</InputLabel>
                             <Select value={shippingOption} fullWidth onChange={(e) => setShippingOption(e.target.value)}>
                                 {options.map((option) => (
-                                <MenuItem key={option.id} value={option.id}>
+                                <MenuItem key={option.id} value={option.id} >
                                     {option.label}
                                 </MenuItem>
                                 ))}
@@ -113,7 +117,14 @@ const AddresForm = ({checkoutToken, next}) => {
                     <br />
                     <div style={{display: 'flex', jsutifyContent: 'space-between'}}>
                         <Button component={Link} to='/cart' variant='outlined'>Back to Cart</Button>
-                        <Button type='submit' variant='contained' color='primary'>Next</Button>
+                        <Button type='submit' variant='contained' color='primary'>
+                            {
+                                shippingOption 
+                                    ? 'Next' 
+                                    : ( <CircularProgress color='secondary' /> )
+                            }
+                            
+                            </Button>
                     </div>
 
                 </form>

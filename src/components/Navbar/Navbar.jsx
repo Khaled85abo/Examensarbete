@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {AppBar, Toolbar, IconButton, Badge, MenuItem, Typography, Icon} from '@material-ui/core'
+import {AppBar, Toolbar, IconButton, Badge,  Typography} from '@material-ui/core'
 import {ShoppingCart} from '@material-ui/icons'
 import logo from '../../assets/iconpng.png'
 import {Link, useLocation,  useHistory} from 'react-router-dom'
@@ -48,8 +48,8 @@ const Navbar = () => {
                     <div >
                         { currentUser 
                         ? (
-                            <div >
-                                <Typography  component={Link}  onClick={handleLogout} style={{marginRight: '10px'}}>Log Out</Typography>
+                            <div style={{display: 'flex'}}>
+                                <Typography   onClick={handleLogout} style={{marginRight: '10px'}}>Log Out</Typography>
                                 <Typography  component={Link} to='/update-profile' >Profile</Typography>
                             </div>
                         ) 

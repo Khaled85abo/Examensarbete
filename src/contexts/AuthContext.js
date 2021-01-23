@@ -15,8 +15,8 @@ export function AuthProvider ({children})  {
     const [cart, setCart] = useState({})
     const [order, setOrder] = useState({})
     const [errorMessage, setErrorMessage] = useState('')
+    const [orderError, setOrderError] = useState('')
     const [products, setProducts] = useState([])
-    const [previousRoute, setPreviousRoute] = useState('/')
 
   
 
@@ -84,13 +84,21 @@ export function AuthProvider ({children})  {
     }
 
     const onCapturecheckout = async (checkoutTokenId, newOrder) => {
+        console.log('inside capture checkout')
+        console.log(newOrder)
         try{
             const incomingOrder = await commerce.checkout.capture(checkoutTokenId, newOrder)
             setOrder(incomingOrder)
+            localStorage.setItem('order_receipt', JSON.stringify(incomingOrder));
+            console.log('successful order: ')
+            console.log(incomingOrder)
             refreshCart()
         } catch(error){
-            setErrorMessage(error.data.error.message)
+            setErrorMessage(error)
+            console.log(error)
         }
+
+        setLoading(false)
     }
 
     useEffect(() =>{
@@ -112,13 +120,18 @@ export function AuthProvider ({children})  {
     // },[])
 
     const value ={
-        previousRoute,
-        setPreviousRoute,
         products,
+        setOrder,
         order,
+        orderError, 
+        setOrderError,
+        setErrorMessage,
         errorMessage,
+        setCart,
         cart,
         currentUser,
+        loading,
+        setLoading,
         setCart,
         signup,
         login,

@@ -19,6 +19,8 @@ import {
 const ProductView = () => {
 
   const {products, handleAddToCart} = useAuth()
+  const [quantity, setQuantity] = useState(1);
+
     const productId = useParams()
  
     const classes = useStyles()
@@ -81,9 +83,9 @@ const ProductView = () => {
                                       Status
                                     </Grid>
                                     <Grid item xs={6}>
-                                     <Button color='primary' onClick={() => handleAddToCart(product.id, 1)}>Buy</Button>
+                                     {/* <Button color='primary' onClick={() => handleAddToCart(product.id, quantity)}>Buy</Button> */}
                                      
-                                      {/* {product.quantity > 0 ? (
+                                      {product.quantity > 0 ? (
                                         <Alert icon={false} severity="success">
                                           In Stock
                                         </Alert>
@@ -91,7 +93,7 @@ const ProductView = () => {
                                         <Alert icon={false} severity="error">
                                           Unavailable
                                         </Alert>
-                                      )} */}
+                                      )}
 
 
                                     </Grid>
@@ -99,7 +101,7 @@ const ProductView = () => {
                                 </ListItem>
 
                                       
-                                {/* {product.quantity > 0 && (
+                                {product.quantity > 0 && (
                                   <>
                                     <ListItem>
                                       <Grid container justify="flex-end">
@@ -129,13 +131,13 @@ const ProductView = () => {
                                         fullWidth
                                         variant="contained"
                                         color="primary"
-                                        onClick={() => onAddToCart(product.id, 1)}
+                                        onClick={() => handleAddToCart(product.id, quantity)}
                                       >
                                         Add to cart
                                       </Button>
                                     </ListItem>
                                   </>
-                                )} */}
+                                )}
 
 
                                                  

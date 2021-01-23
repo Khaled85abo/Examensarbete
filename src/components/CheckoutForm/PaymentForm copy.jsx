@@ -1,22 +1,17 @@
-import {useState} from 'react';
+import React, {useState} from 'react';
 import { Typography, Button, Divider, TextField } from '@material-ui/core';
 import { Elements, CardElement, ElementsConsumer } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-import {useHistory} from 'react-router-dom'
 import {useAuth} from '../../contexts/AuthContext'
 import Review from './Review';
-import {commerce} from '../../lib/commerce'
+
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 
 
-const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, }) => {
+const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData}) => {
 
-    const {setOrderError, setLoading, setCart, setOrder} = useAuth()
-    const history = useHistory()
-
-
-    const dev = true
+  const dev = true
 
 
     // Payment details
@@ -28,14 +23,23 @@ const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, }) => {
       dev ? '15142' : ''
     );
 
+  const [totalPrice, setTotalPrice] = useState(0)
+
+    const {onCapturecheckout, error} = useAuth()
+
   console.log(shippingData)    
  
-
-  const handleSubmit = async (event, elements, stripe) => {
+/*
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setLoading(true)
 
- 
+    // if (!stripe || !elements) return;
+
+    // const cardElement = elements.getElement(CardElement);
+    // const { error, paymentMethod } = await stripe.createPaymentMethod({ type: 'card', card: cardElement });
+    // if (error) {
+    //   console.log('[error]', error);
+    // } else {
       const orderData = {
         line_items: checkoutToken.live.line_items,
         customer: { 
@@ -43,8 +47,51 @@ const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, }) => {
           lastname: shippingData.lastName, 
           email: shippingData.email 
         },
+        shipping: { name: 'International', street: shippingData.address1, town_city: shippingData.city, county_state: shippingData.shippingSubdivision, postal_zip_code: shippingData.zip, country: shippingData.shippingCountry },
+        fulfillment: { shipping_method: shippingData.shippingOption },
+        // payment: {
+        //   gateway: 'stripe',
+        //   stripe: {
+        //     payment_method_id: paymentMethod.id,
+        //   },
+        // },
+        payment: {
+          gateway: 'test_gateway',
+          card: {
+            number: cardNum,
+            expiry_month: expMonth,
+            expiry_year: expYear,
+            cvc: cvv,
+            postal_zip_code: billingPostalZipcode,
+          },
+        },
+      };
+      onCapturecheckout(checkoutToken.id, orderData);
+
+      nextStep();
+    // }
+  };
+  */
+
+
+  const handleSubmit = async (event, elements, stripe) => {
+    event.preventDefault();
+
+    // if (!stripe || !elements) return;
+
+    // const cardElement = elements.getElement(CardElement);
+
+    // const { error, paymentMethod } = await stripe.createPaymentMethod({ type: 'card', card: cardElement });
+
+  
+      const orderData = {
+        line_items: checkoutToken.live.line_items,
+        customer: { 
+          firstname: shippingData.firstName, 
+          lastname: shippingData.lastName, 
+          email: shippingData.email },
         shipping: { 
-          name: shippingData.firstName + ' ' + shippingData.lastName, 
+          name: 'International', 
           street: shippingData.address, 
           town_city: shippingData.city, 
           county_state: shippingData.shippingSubdivision, 
@@ -65,40 +112,23 @@ const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, }) => {
           },
         },
       };
-      // onCapturecheckout(checkoutToken.id, orderData);
-      try{
-        const incomingOrder = await commerce.checkout.capture(checkoutToken.id, orderData)
-        setOrder(incomingOrder)
-        localStorage.setItem('order_receipt', JSON.stringify(incomingOrder));
-        console.log('successful order: ')
-        console.log(incomingOrder)
-        const newCart = await commerce.cart.refresh()
-        console.log('after refreshing cart function')
-        setCart(newCart)
-        console.log('before next step function')
-
-          history.push('/confirmation')
-
-        } catch(error){
-          console.log('unsuccessful order')
-        setOrderError(error)
-        console.log(error)
-        nextStep();
-
-    }
-      // console.log('before initiating next step function')
-      // nextStep();
-
+      onCapturecheckout(checkoutToken.id, orderData);
+      nextStep();
+  
   };
+
+
 
   return (
     <>
-      <Review checkoutToken={checkoutToken} shippingData={shippingData} />
+      <Review checkoutToken={checkoutToken} shippingData={shippingData} setTotalPrice={setTotalPrice}/>
       <Divider />
       <Typography variant="h6" gutterBottom style={{ margin: '20px 0' }}>Payment method</Typography>
-          <form onSubmit={(e) => handleSubmit(e)}>
-
-          <TextField
+      <Elements stripe={stripePromise}>
+        <ElementsConsumer>{({ elements, stripe }) => (
+          <form onSubmit={(e) => handleSubmit(e, elements, stripe)}>
+          {/* <CardElement /> */}
+            <TextField
               variant="outlined"
               margin="normal"
               required
@@ -157,11 +187,13 @@ const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, }) => {
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <Button variant="outlined" onClick={backStep}>Back</Button>
               <Button type="submit" variant="contained"  color="primary">
-                Pay {checkoutToken.live.subtotal.formatted_with_symbol}
+                Pay {checkoutToken.live.currency.symbol + totalPrice.toFixed(2)}
               </Button>
             </div>
           </form>
-
+        )}
+        </ElementsConsumer>
+      </Elements>
     </>
   );
 };

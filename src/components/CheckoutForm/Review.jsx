@@ -2,41 +2,49 @@ import React, {useState, useEffect} from 'react'
 import {Typography, List, ListItem, ListItemText} from '@material-ui/core'
 
 const Review = ({checkoutToken, shippingData}) => {
-    const [totalPrice, setTotalPrice] = useState('')
-    const [totalShippingCost, setTotalShippingCost] = useState()
+
+    const [totalShippingCost, setTotalShippingCost] = useState(0)
     const totalShippingArray = []
 
-    const countTotalPrice = () => {
 
-
-        // const itemsPrices = []
-        // checkoutToken.live.line_items.map(product => {
-        //    itemsPrices.push(product.line_total.raw) 
-        // })
-        // const itemsPrice =   itemsPrices.reduce((a,b) => a + b , 0)
-
-
-
-
-        const pricetotal = Number(checkoutToken.live.total.raw + totalShippingCost).toFixed(2)
-        setTotalPrice(`${checkoutToken.live.currency.symbol}${pricetotal}`)
+    const calProductShippingPrice = (shippingPrice, quantity) => {
+       const  totalshipping = shippingPrice * quantity
+       totalShippingArray.push(totalshipping)
+        // const totalshipping2 = totalshipping.toFixed(2)
+       return `${checkoutToken.live.currency.symbol}${(shippingPrice * quantity).toFixed(2)}`
     }
 
     const calTotalShippingPrice = () => {
-       setTotalShippingCost(totalShippingArray.reduce((a,b) => a + b, 0))
-       console.log(totalShippingCost)
-    }
+        setTotalShippingCost(totalShippingArray.reduce((a,b) => a + b, 0))
+        console.log(totalShippingCost)
+     }
 
-    const calShippingPrice = (shippingPrice, quantity) => {
-       const  totalshipping = shippingPrice * quantity
-       totalShippingArray.push(totalshipping)
-        const totalshipping2 = Number(totalshipping).toFixed(2)
-       return `${checkoutToken.live.currency.symbol}${totalshipping2}`
-    }
+     const totalPrice = Number(totalShippingCost) + Number(checkoutToken.live.total.raw)
+     
+
+    //  const totalPrice2 = totalShippingCost + checkoutToken.live.total.raw
+
+
+    // const countTotalPrice = () => {
+        // const pricetotalNumber = checkoutToken.live.total.raw + totalShippingCost
+        // const pricetotal = pricetotalNumber.toFixed(2)
+        // const setpricetotal = `${checkoutToken.live.currency.symbol}${pricetotal}`
+        // setTotalPrice(totalShippingCost)
+        // console.log(totalShippingCost)
+        // setTotalPrice( Number(totalShippingCost) + Number(checkoutToken.live.total.raw)) 
+    // }
+
 
     useEffect(()=> {
-        countTotalPrice()
-        calTotalShippingPrice()
+
+    //    if  (totalShippingArray?.length > 0) {
+
+        if (totalShippingArray.length > 0){
+           console.log('array has shipping prices')
+           console.log(totalShippingArray)
+           calTotalShippingPrice()
+        // setTotalShippingCost(totalShippingArray.reduce((a,b) => a + b, 0))
+        }
     },[])
 
 
@@ -54,9 +62,9 @@ const Review = ({checkoutToken, shippingData}) => {
                         <Typography variant='body2'>{product.line_total.formatted_with_symbol}</Typography>
                     </ListItem>
 
-                     <ListItem style={{padding: '10px 0'}} >
-                    <ListItemText  secondary={`Shipping: `} />
-                    <Typography variant='body2'>{calShippingPrice(shippingData.shippingPrice, product.quantity)}</Typography>
+                    <ListItem style={{padding: '10px 0'}} >
+                        <ListItemText  secondary={`Shipping: `} />
+                        <Typography variant='body2'>{calProductShippingPrice(shippingData.shippingPrice, product.quantity)}</Typography>
                     </ListItem>
             </div>
                 ))}
@@ -74,14 +82,15 @@ const Review = ({checkoutToken, shippingData}) => {
                 <ListItem style={{padding: '10px 0'}}>
                     <ListItemText secondary='Shipping Cost' />
                     <Typography variant='subtitle1'>
-                        {`${checkoutToken.live.currency.symbol}${Number(totalShippingCost).toFixed(2)}`}
+                        {checkoutToken.live.currency.symbol + Number(totalShippingCost).toFixed(2)}
                     </Typography>
                 </ListItem>
                 <hr />
                 <ListItem style={{padding: '10px 0'}}>
                     <ListItemText primary='total' />
                     <Typography variant='subtitle1' style={{fontWeight: '700'}}>
-                        {totalPrice}
+                        {/* {totalPrice} */}
+                        {checkoutToken.live.currency.symbol + totalPrice.toFixed(2)}
                     </Typography>
                 </ListItem>
             </List>

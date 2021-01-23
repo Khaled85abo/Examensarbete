@@ -4,7 +4,7 @@ import {commerce} from './lib/commerce'
 import {AuthProvider} from './contexts/AuthContext'
 import PrivateRoute from './components/PrivateRoute'
 import CopyRight from './components/CopyRight'
-import {Products, Navbar, Cart, Checkout,  Login, ForgotPassword, UpdateProfile, Signup, ProductView} from './components'
+import {Products, Navbar, Cart, Checkout,  Login, ForgotPassword, UpdateProfile, Signup, ProductView, Confirmation} from './components'
 import {useAuth} from './contexts/AuthContext'
 
 const App = () => {
@@ -97,6 +97,9 @@ const App = () => {
                         </Route>
 
                         <PrivateRoute exact path='/checkout' component={Checkout}   />
+
+                        <Route exact path='/confirmation' component={Confirmation} />
+
                         <Route exact path='/:id'>
                             <ProductView 
                             // products={products} 
