@@ -14,11 +14,11 @@ import {
   Typography,
 } from '@material-ui/core';
 
-import {useStyles} from '../../utils/styles'
+import {useGlobalStyles} from '../../utils/styles'
 
 function Confirmation() {
  
-    const classes = useStyles();
+    const classes = useGlobalStyles();
     const order = JSON.parse(localStorage.getItem('order_receipt')) 
     console.log(order)
 
@@ -58,18 +58,18 @@ function Confirmation() {
                     </Card>
                 </Grow>
 
-                <Grow in{...( { timeout: 1500 } )}>
+                <Grow in {...( { timeout: 1500 } )}>
                     <Card className={[classes.p1, classes.mt1]}>
-                    <Typography variant="h6" component="h6">
-                        Shipping details
-                    </Typography>
-                    <Typography>{order.shipping.name}</Typography>
-                    <Typography>{order.shipping.street}</Typography>
-                    <Typography>
-                        {order.shipping.town_city}, {order.shipping.county_state}{' '}
-                        {order.shipping.postal_zip_code}
-                    </Typography>
-                    <Typography> {order.shipping.country}</Typography>
+                      <Typography variant="h6" component="h6">
+                          Shipping details
+                      </Typography>
+                      <Typography>{order.shipping.name}</Typography>
+                      <Typography>{order.shipping.street}</Typography>
+                      <Typography>
+                          {order.shipping.town_city}, {order.shipping.county_state}{' '}
+                          {order.shipping.postal_zip_code}
+                      </Typography>
+                      <Typography> {order.shipping.country}</Typography>
                     </Card>
                 </Grow>
 

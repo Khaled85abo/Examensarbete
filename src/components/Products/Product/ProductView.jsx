@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useParams, Link } from 'react-router-dom'
-import {useStyles} from './coolshopstyles'
+import {useGlobalStyles} from '../../../utils/styles'
+import useStyles from './productViewStyles'
 import {useAuth} from '../../../contexts/AuthContext'
 import {
     Box,
@@ -23,12 +24,13 @@ const ProductView = () => {
 
     const productId = useParams()
  
-    const classes = useStyles()
+    const globalStyles = useGlobalStyles()
+    const viewStyles = useStyles()
 
 
     return (
-        <div className={classes.content}>
-            <div className={classes.toolbar}>
+        <div className={viewStyles.content}>
+            <div className={viewStyles.toolbar} />
                 {products.map((product) => (
                     product.id === productId.id && (
                    
@@ -41,7 +43,7 @@ const ProductView = () => {
                             <img
                               src={product.media.source}
                               alt={product.name}
-                              className={classes.largeImage}
+                              className={viewStyles.largeImage}
                             />
                           </Grid>
                           <Grid item md={3} xs={12}>
@@ -84,7 +86,6 @@ const ProductView = () => {
                                     </Grid>
                                     <Grid item xs={6}>
                                      {/* <Button color='primary' onClick={() => handleAddToCart(product.id, quantity)}>Buy</Button> */}
-                                     
                                       {product.quantity > 0 ? (
                                         <Alert icon={false} severity="success">
                                           In Stock
@@ -94,13 +95,9 @@ const ProductView = () => {
                                           Unavailable
                                         </Alert>
                                       )}
-
-
                                     </Grid>
                                   </Grid>
                                 </ListItem>
-
-                                      
                                 {product.quantity > 0 && (
                                   <>
                                     <ListItem>
@@ -138,26 +135,13 @@ const ProductView = () => {
                                     </ListItem>
                                   </>
                                 )}
-
-
-                                                 
                               </List>
                             </Card>
                           </Grid>
                         </Grid>
                       </Slide>
-
-
-
-
-
-
                     )
-                 
-                 
-                    
                 ))}
-            </div>
         </div>
     )
 

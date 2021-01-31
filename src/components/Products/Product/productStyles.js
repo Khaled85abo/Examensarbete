@@ -6,13 +6,12 @@ export default makeStyles(() => ({
     maxWidth: '100%',
   },
   media: {
-    height: 260,
-    width: 200,
+    // height: '260px',
+    // maxWidth: '400px',
     objectFit: 'cover',
     margin: 'auto',
-    marginTop: '10px',
+    // marginTop: '5px',
     // paddingTop: '56.25%', // 16:9
-
   },
   cardActions: {
     display: 'flex',

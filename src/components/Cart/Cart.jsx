@@ -2,18 +2,20 @@ import {Container, Typography, Button , Grid, Table, CardActions, TableCell,Tabl
 import {Link} from 'react-router-dom'
 import {useAuth} from '../../contexts/AuthContext'
 import CartItem from './CartItem/CartItem'
-import useStyles from './styles'
+import {useGlobalStyles} from '../../utils/styles'
+import useStyles from './cartStyles'
 
 const Cart = () => {
 
     const {cart, handleEmptyCart, currentUser} = useAuth()
 
-    const classes = useStyles()
+    const globalStyles = useGlobalStyles()
+    const cartStyles = useStyles()
 
     const EmptyCart = () =>  (
         <Typography variant='subtitle1'>
             Oops, Your Cart Is Empty,
-            <Link to='/' className={classes.link}> Add some products!</Link>
+            <Link to='/' className={globalStyles.link}> Add some products!</Link>
         </Typography>
         )
 
@@ -46,14 +48,14 @@ const Cart = () => {
                             </Grid>
                         ))} */}
             </Grid>
-                <div className={classes.cardDetails} >
+                <div className={cartStyles.cardDetails} >
                     <Typography variant='h4'>
                         Subtotal: {cart.subtotal.formatted_with_symbol}
                     </Typography>
                     <div>
 
                         <Button 
-                        className={classes.emptyButton} 
+                        className={cartStyles.emptyButton} 
                         size='large' 
                         type='button' 
                         variant='contained' 
@@ -64,7 +66,7 @@ const Cart = () => {
                         <Button 
                         component={Link} 
                         to='/checkout' 
-                        className={classes.checkoutButton} 
+                        className={cartStyles.checkoutButton} 
                         size='large' type='button' variant='contained' color='primary'>
                         {
                         !currentUser 
@@ -82,8 +84,8 @@ const Cart = () => {
     return  (
         
         <Container>
-            <div className={classes.toolbar} />
-            <Typography className={classes.title} variant='h5' gutterBottom>Your Shopping Cart</Typography>
+            <div className={cartStyles.toolbar} />
+            <Typography className={cartStyles.cartTitle} variant='h5' gutterBottom>Your Shopping Cart</Typography>
             {!cart.line_items.length ? <EmptyCart /> : <FilledCart />}
         </Container>
     )

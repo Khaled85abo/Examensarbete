@@ -4,12 +4,13 @@ import {ShoppingCart} from '@material-ui/icons'
 import logo from '../../assets/iconpng.png'
 import {Link, useLocation,  useHistory} from 'react-router-dom'
 import {useAuth} from '../../contexts/AuthContext'
-import useStyles from './styles'
-
+import {useGlobalStyles} from '../../utils/styles'
+import useStyles from './NavStyles'
 const Navbar = () => {
 
 
-    const classes = useStyles()
+    const globalStyles = useGlobalStyles()
+    const navStyles = useStyles()
     const location = useLocation()
     const history = useHistory()
     const[error, setError] = useState('')
@@ -37,14 +38,16 @@ const Navbar = () => {
 
     return (
         <>
-            <AppBar position='fixed' className={classes.appBar} color='inherit'>
+            <AppBar position='fixed' 
+            // className={navStyles.NavAppBar} 
+            color='inherit'>
                 <Toolbar>
-                    <Typography component={Link} to='/' variant='h6' className={classes.title} color='inherit'>
-                        <img src={logo} alt='commerce.js' height='25px' className={classes.image} />
-                        <span className={classes.moto}>Healthy Life</span>
+                    <Typography component={Link} to='/' variant='h6' className={navStyles.title} color='inherit'>
+                        <img src={logo} alt='commerce.js' height='25px' className={navStyles.image} />
+                        <span className={navStyles.moto}>Healthy Life</span>
                     </Typography>
                    
-                    <div className={classes.grow} />
+                    <div className={navStyles.grow} />
                     <div >
                         { currentUser 
                         ? (
@@ -59,7 +62,7 @@ const Navbar = () => {
 
                     { location.pathname === '/cart' || location.pathname === '/checkout' 
                     ? ('') 
-                    :  (<div className={classes.button}>
+                    :  (<div className={navStyles.button}>
                         <IconButton component={Link} to='/cart' aria-label='show cart item' color='inherit' >
                             <Badge badgeContent={totalItems}  color='secondary'>
                                 <ShoppingCart />

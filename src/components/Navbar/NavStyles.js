@@ -3,7 +3,8 @@ import { makeStyles, fade } from '@material-ui/core/styles';
 const drawerWidth = 0;
 
 export default makeStyles((theme) => ({
-  appBar: {
+  
+  NavAppBar: {
     boxShadow: 'none',
     borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
     [theme.breakpoints.up('sm')]: {
@@ -69,4 +70,6 @@ export default makeStyles((theme) => ({
     fontFamily: 'Arizonia',
     letterSpacing: '2px',
   },
+
+
 }));

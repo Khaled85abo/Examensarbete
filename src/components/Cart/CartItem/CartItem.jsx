@@ -1,27 +1,10 @@
-import {Container, Typography, Button , Grid, Table, CardActions, TableCell,TableHead, TableRow, TableContainer, TableBody,MenuItem, Select}  from '@material-ui/core'
-import useSyles from './styles'
+import { Button ,  TableCell, TableRow ,MenuItem, Select}  from '@material-ui/core'
 import {useAuth} from '../../../contexts/AuthContext'
 import {Link} from 'react-router-dom'
 const CartItem = ({item}) => {
 
     const {handleRemoveFromCart, handleUpdateCartQty} = useAuth()
-    const classes = useSyles()
     return (
-        // <Card>
-        //     <CardMedia image={item.media.source} alt={item.name} className={classes.media} />
-        //     <CardContent className={classes.cardContent}>
-        //         <Typography variant='h4'> {item.name}</Typography>
-        //         <Typography variant='h5'> {item.line_total.formatted_with_symbol}</Typography>
-        //     </CardContent>
-        //     <CardActions className={classes.cartActions}>
-        //         <div className={classes.buttons}>
-        //             <Button type='button' size='small' onClick={() => handleUpdateCartQty(item.id, item.quantity - 1)} >-</Button>
-        //             <Typography>{item.quantity}</Typography>
-        //             <Button type='button' size='small' onClick={() => handleUpdateCartQty(item.id, item.quantity + 1)} >+</Button>
-        //         </div>
-        //         <Button variant='contained' type='button ' color='secondary' onClick={ () => handleRemoveFromCart(item.id)}>Remove</Button>
-        //     </CardActions>
-        // </Card>
                                     
         <TableRow key={item.name}>
         <TableCell component="th" scope="row">

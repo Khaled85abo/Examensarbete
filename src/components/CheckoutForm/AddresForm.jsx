@@ -55,6 +55,8 @@ const AddresForm = ({checkoutToken, next}) => {
     }
 
     useEffect(()=> {
+        console.log('inside AddressForm useEffect')
+        console.log(checkoutToken)
         fetchShippingCountries(checkoutToken.id)
      
     }, [])

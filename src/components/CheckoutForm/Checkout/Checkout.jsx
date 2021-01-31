@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react'
-import {Link, useHistory} from 'react-router-dom'
-import {Paper, Stepper, Step, StepLabel, Typography, CircularProgress, Divider, Button, CssBaseline} from '@material-ui/core'
-import useStyles from './styels'
+import { useHistory} from 'react-router-dom'
+import {Paper, Stepper, Step, StepLabel, Typography,  CssBaseline} from '@material-ui/core'
+import {useGlobalStyles} from '../../../utils/styles'
+import useStyles from './checkoutStyels'
 import AddressForm from '../AddresForm'
 import PaymentForm from '../PaymentForm'
 import {commerce} from '../../../lib/commerce'
@@ -19,7 +20,8 @@ const Checkout = () => {
     const [activeStep, setActiveStep] = useState(0)
     const [checkoutToken, setCkeckoutToken] = useState(null)
     const [shippingData, setShippingData] = useState({})
-    const classes = useStyles()
+    const globalStyles = useGlobalStyles()
+    const checkStyles = useStyles()
     const history = useHistory()
 
     console.log('inside checkout')
@@ -40,13 +42,9 @@ const Checkout = () => {
             }
         }
 
-        if(Object.keys(cart).length != 0) {  
-            console.log(cart)
             generateToken()
            
-        } else {
-            console.log('the cart is empty')
-        }
+      
     
 
 
@@ -142,11 +140,11 @@ const Checkout = () => {
         return (
             <>
             <CssBaseline />
-                <div className={classes.toolbar} />
-                <main className={classes.layout}>
-                    <Paper className={classes.paper}>
+                <div className={checkStyles.toolbar} />
+                <main className={checkStyles.layout}>
+                    <Paper className={checkStyles.paper}>
                         <Typography variant='h4' align='center'>Checkout</Typography>
-                        <Stepper activeStep={activeStep} className={classes.stepper}>
+                        <Stepper activeStep={activeStep} className={checkStyles.stepper}>
                             {steps.map((step) => (
                                 <Step key={step}>
                                     <StepLabel>{step}</StepLabel>
@@ -154,7 +152,7 @@ const Checkout = () => {
                             ))}
                         </Stepper>
                   
-                                <Form />
+                            {checkoutToken && <Form />}
                         {/* {activeStep === steps.length -1 &&   checkoutToken && <Form />} */}
                
                     
