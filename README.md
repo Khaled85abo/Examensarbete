@@ -2,6 +2,22 @@
 En e-handel butik för stevia producter.
 React, Commercejs, Material-ui och stripe.
 
+
+## Stack of technologies
+[React](https://reactjs.org/)
+[Commerce JS](https://commercejs.com/)
+[Material-UI](https://material-ui.com/)
+
+
+## Running Locally
+
+```bash
+$ git clone https://github.com/Khaled85abo/Stevia.git 
+$ cd stevia
+$ npm install
+$ npm start
+```
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
