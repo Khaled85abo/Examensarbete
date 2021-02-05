@@ -2,7 +2,7 @@
 En e-handel butik för stevia producter.
 React, Commercejs, Material-ui och stripe.
 
-<img align="right" src="./src/assets/stack" alt="Stack" height="150px">
+<img align="right" src="./src/assets/stack.png" alt="Stack" height="150px">
 
 ## Built With
 *[React](https://reactjs.org/);
