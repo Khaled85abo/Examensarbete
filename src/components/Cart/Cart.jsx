@@ -1,13 +1,13 @@
 import {Container, Typography, Button , Grid, Table, CardActions, TableCell,TableHead, TableRow, TableContainer, TableBody,MenuItem, Select}  from '@material-ui/core'
 import {Link} from 'react-router-dom'
-import {useAuth} from '../../contexts/AuthContext'
+import {useReactContext} from '../../contexts/ReactContext'
 import CartItem from './CartItem/CartItem'
 import {useGlobalStyles} from '../../utils/styles'
 import useStyles from './cartStyles'
 
 const Cart = () => {
 
-    const {cart, handleEmptyCart, currentUser} = useAuth()
+    const {cart, handleEmptyCart, currentUser} = useReactContext()
 
     const globalStyles = useGlobalStyles()
     const cartStyles = useStyles()
@@ -29,8 +29,8 @@ const Cart = () => {
                                 <TableRow>
                                 <TableCell>Name</TableCell>
                                 <TableCell align="center">Quantity</TableCell>
-                                <TableCell align="right">Price</TableCell>
-                                <TableCell align="right">Action</TableCell>
+                                <TableCell align="center">Price</TableCell>
+                                <TableCell align="center">Action</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>

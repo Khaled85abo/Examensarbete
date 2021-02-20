@@ -3,7 +3,7 @@ import {AppBar, Toolbar, IconButton, Badge,  Typography} from '@material-ui/core
 import {ShoppingCart} from '@material-ui/icons'
 import logo from '../../assets/iconpng.png'
 import {Link, useLocation,  useHistory} from 'react-router-dom'
-import {useAuth} from '../../contexts/AuthContext'
+import {useReactContext} from '../../contexts/ReactContext'
 import {useGlobalStyles} from '../../utils/styles'
 import useStyles from './NavStyles'
 const Navbar = () => {
@@ -14,7 +14,7 @@ const Navbar = () => {
     const location = useLocation()
     const history = useHistory()
     const[error, setError] = useState('')
-    const { currentUser, logout, cart } = useAuth()
+    const { currentUser, logout, cart } = useReactContext()
     const totalItems = cart.total_items
 
 
@@ -52,8 +52,8 @@ const Navbar = () => {
                         { currentUser 
                         ? (
                             <div style={{display: 'flex'}}>
-                                <Typography   onClick={handleLogout} style={{marginRight: '10px'}}>Log Out</Typography>
-                                <Typography  component={Link} to='/update-profile' >Profile</Typography>
+                                <Typography   onClick={handleLogout} style={{marginRight: '10px'}} className={globalStyles.link}>Log Out</Typography>
+                                <Typography  component={Link} to='/update-profile' className={globalStyles.link} >Profile</Typography>
                             </div>
                         ) 
                         :  <Typography  component={Link} to='/login' >Log In</Typography>

@@ -1,17 +1,21 @@
 import { Button ,  TableCell, TableRow ,MenuItem, Select}  from '@material-ui/core'
-import {useAuth} from '../../../contexts/AuthContext'
+import {useReactContext} from '../../../contexts/ReactContext'
 import {Link} from 'react-router-dom'
+import {useGlobalStyles} from '../../../utils/styles'
+
 const CartItem = ({item}) => {
 
-    const {handleRemoveFromCart, handleUpdateCartQty} = useAuth()
+  const globalStyles = useGlobalStyles()
+
+    const {handleRemoveFromCart, handleUpdateCartQty} = useReactContext()
     return (
                                     
         <TableRow key={item.name}>
         <TableCell component="th" scope="row">
-            <Link to={`/${item.product_id}`} >{item.name}</Link>
+            <Link className={globalStyles.link}  to={`/${item.product_id}`} >{item.name}</Link>
           
         </TableCell>
-        <TableCell align="right">
+        <TableCell align="center">
         <Select
             labelId="quanitity-label"
             id="quanitity"
@@ -27,11 +31,11 @@ const CartItem = ({item}) => {
 
 
         </TableCell>
-        <TableCell align="right">
+        <TableCell align="center">
           {item.price.formatted_with_symbol}
         </TableCell>
 
-        <TableCell align="right">
+        <TableCell align="center">
           <Button
              onClick={ () => handleRemoveFromCart(item.id)}
             variant="contained"

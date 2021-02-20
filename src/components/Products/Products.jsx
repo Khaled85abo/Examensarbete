@@ -1,12 +1,10 @@
 import {Grid, Slide} from '@material-ui/core'
 import Product from './Product/Product'
-import {useAuth} from '../../contexts/AuthContext'
-import {useGlobalStyles} from '../../utils/styles'
+import {useReactContext} from '../../contexts/ReactContext'
 import useStyles from './productsStyles'
 
 const Products = () => {
-    const {products} = useAuth()
-    const globalStyles = useGlobalStyles()
+    const {products} = useReactContext()
     const productsStyles = useStyles()
     return (
 
@@ -14,12 +12,10 @@ const Products = () => {
         <div className={productsStyles.toolbar} />
 
         <Slide in direction='up'>
-            <Grid container justify='center' spacing={4}>
+            <Grid container justify='center' spacing={1} >
                 {products.map(product => (
-                    <Grid item key={product.id} xs={12} sm={4} lg={3} >
-                        <Product product={product} 
-                        // onAddToCart={onAddToCart} 
-                        />
+                    <Grid item key={product.id} xs={12} sm={4} lg={2} className={productsStyles.center} >
+                        <Product product={product} />
                     </Grid>
                 ))}
             </Grid>

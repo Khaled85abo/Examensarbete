@@ -6,7 +6,7 @@ import useStyles from './checkoutStyels'
 import AddressForm from '../AddresForm'
 import PaymentForm from '../PaymentForm'
 import {commerce} from '../../../lib/commerce'
-import {useAuth} from '../../../contexts/AuthContext'
+import {useReactContext} from '../../../contexts/ReactContext'
 import Loading from '../../Loading'
 
 const steps = ['Shipping address', 'Payment details']
@@ -15,7 +15,7 @@ const steps = ['Shipping address', 'Payment details']
 const Checkout = () => {
 
   
-    const {cart, order,  orderError, setLoading, loading} = useAuth()
+    const {cart, order,  orderError, setLoading, loading} = useReactContext()
 
     const [activeStep, setActiveStep] = useState(0)
     const [checkoutToken, setCkeckoutToken] = useState(null)

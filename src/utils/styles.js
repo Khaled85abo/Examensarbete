@@ -50,9 +50,9 @@ export const useGlobalStyles = makeStyles((theme) => ({
     margin: '20px auto',
     letterSpacing: '1,5px',
   },
-  link: {
-    margin: '1rem',
-  },
+  // link: {
+  //   margin: '1rem',
+  // },
   main: {
     padding: '1rem',
   },
@@ -66,6 +66,15 @@ export const useGlobalStyles = makeStyles((theme) => ({
   p1: {
     padding: '1rem !important',
   },
+  link: {
+    color: 'black',
+    '&:hover': {
+      color: 'green',
+      textDecoration: 'none',
+      cursor: 'pointer',
+    },
+  },
+
 
 
 

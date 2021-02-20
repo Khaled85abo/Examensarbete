@@ -4,7 +4,7 @@ import {commerce} from '../lib/commerce'
 
 const AuthContext = React.createContext()
 
-export function useAuth(){
+export function useReactContext(){
     return useContext(AuthContext)
 }
 

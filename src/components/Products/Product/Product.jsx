@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom'
 import {Card, CardMedia,  Typography, IconButton, CardContent}  from '@material-ui/core'
 import {AddShoppingCart} from '@material-ui/icons'
-import {useAuth} from '../../../contexts/AuthContext'
+import {useReactContext} from '../../../contexts/ReactContext'
 
 import {useGlobalStyles} from '../../../utils/styles'
 import useStyles from './productStyles'
@@ -9,7 +9,7 @@ import useStyles from './productStyles'
 
 const Product = ({product}) => {
 
-const {handleAddToCart} = useAuth()
+const {handleAddToCart} = useReactContext()
 
     const globalStyles = useGlobalStyles()
     const productStyles = useStyles()
@@ -17,10 +17,14 @@ const {handleAddToCart} = useAuth()
         <Card className={productStyles.root}>
             {/* Material-UI: either `image` or `src` property must be specified */}
             <div>
-                <CardMedia component='img' className={productStyles.media} image={product.media.source} title={product.name} /> 
+
+                <Link to={`/${product.id}`} >
+                    <CardMedia component='img' className={productStyles.media} image={product.media.source} title={product.name} /> 
+                </Link>
+                
                 <CardContent>
                     <div className={productStyles.cardContent}>
-                        <Link to={`/${product.id}`} >
+                        <Link to={`/${product.id}`}  className={globalStyles.link}>
                                     <Typography variant='h6' gutterBottom>
                                         {product.name}
                                     </Typography>

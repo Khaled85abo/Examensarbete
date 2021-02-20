@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
-import { useParams, Link } from 'react-router-dom'
+import { useParams} from 'react-router-dom'
 import {useGlobalStyles} from '../../../utils/styles'
 import useStyles from './productViewStyles'
-import {useAuth} from '../../../contexts/AuthContext'
+import {useReactContext} from '../../../contexts/ReactContext'
 import {
     Box,
     Button,
@@ -19,7 +19,7 @@ import {
 
 const ProductView = () => {
 
-  const {products, handleAddToCart} = useAuth()
+  const {products, handleAddToCart} = useReactContext()
   const [quantity, setQuantity] = useState(1);
 
     const productId = useParams()

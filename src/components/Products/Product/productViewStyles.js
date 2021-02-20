@@ -6,11 +6,11 @@ export default makeStyles((theme) => ({
     // marginTop: '10px',
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
-    padding: theme.spacing(3),
+    padding: theme.spacing(4),
   },
   largeImage: {
     maxHeight: '65vh',
-    maxWidth: '90vw',
+    maxWidth: '80vw',
     margin: 'auto',
   }
  

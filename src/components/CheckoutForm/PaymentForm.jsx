@@ -3,7 +3,7 @@ import { Typography, Button, Divider, TextField } from '@material-ui/core';
 import { Elements, CardElement, ElementsConsumer } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import {useHistory} from 'react-router-dom'
-import {useAuth} from '../../contexts/AuthContext'
+import {useReactContext} from '../../contexts/ReactContext'
 import Review from './Review';
 import {commerce} from '../../lib/commerce'
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
@@ -12,7 +12,7 @@ const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, }) => {
 
-    const {setOrderError, setLoading, setCart, setOrder} = useAuth()
+    const {setOrderError, setLoading, setCart, setOrder} = useReactContext()
     const history = useHistory()
 
 
