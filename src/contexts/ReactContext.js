@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { auth } from "../firebase";
-import { commerce } from "../lib/commerce";
+import { commerce } from "../headlessCMS/commerce";
 
 const AuthContext = React.createContext();
 

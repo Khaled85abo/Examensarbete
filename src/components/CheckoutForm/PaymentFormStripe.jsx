@@ -1,4 +1,4 @@
-import { commerce } from "../../lib/commerce";
+import { commerce } from "../../headlessCMS/commerce";
 
 import { Typography, Button, Divider } from "@material-ui/core";
 import {

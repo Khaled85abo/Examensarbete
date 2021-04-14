@@ -9,7 +9,7 @@ import {
 } from "@stripe/react-stripe-js";
 import { CircularProgress } from "@material-ui/core";
 import { loadStripe } from "@stripe/stripe-js";
-import { commerce } from "../../lib/commerce";
+import { commerce } from "../../headlessCMS/commerce";
 
 const PaymentForm = ({
   checkoutToken,

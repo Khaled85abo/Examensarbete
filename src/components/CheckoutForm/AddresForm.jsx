@@ -11,7 +11,7 @@ import {
 } from "@material-ui/core";
 import { useForm, FormProvider } from "react-hook-form";
 import FormInput from "./CustomTextField";
-import { commerce } from "../../lib/commerce";
+import { commerce } from "../../headlessCMS/commerce";
 
 const AddresForm = ({ checkoutToken, next }) => {
   const [shippingCountries, setShippingCoutnries] = useState([]);

@@ -1,4 +1,5 @@
 # STEVIA STORE
+
 En e-handel butik för stevia producter.
 Javascript Ramverk (React),
 State hantering (React context),
@@ -10,20 +11,19 @@ Betalning System (stripe).
 
 <img align="right" src="./src/assets/stack.png" alt="Stack" height="140px">
 
-* [React JS](https://reactjs.org/);
-* [Commerce JS](https://commercejs.com/);
-* [Material-UI](https://material-ui.com/);
-* [Stripe](https://stripe.com/en-se);
-
-
+- [React JS](https://reactjs.org/);
+- [Commerce JS](https://commercejs.com/);
+- [Material-UI](https://material-ui.com/);
+- [Stripe](https://stripe.com/en-se);
 
 ## Running Locally
 
 ```bash
-$ git clone https://github.com/Khaled85abo/Stevia.git 
+$ git clone https://github.com/Khaled85abo/Stevia.git
 $ cd stevia
 $ npm install
 $ npm start
+API keys are required
 ```
 
 Products

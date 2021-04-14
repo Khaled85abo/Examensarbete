@@ -15,7 +15,7 @@ import {
 import useStyles from "../checkoutStyels";
 import AddressForm from "../AddresForm";
 import PaymentForm from "../PaymentFormTestGateway";
-import { commerce } from "../../../lib/commerce";
+import { commerce } from "../../../headlessCMS/commerce";
 import { useReactContext } from "../../../contexts/ReactContext";
 
 const steps = ["Shipping address", "Payment details"];
