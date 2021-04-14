@@ -1,7 +1,8 @@
 import React, {useRef, useState} from 'react'
 import {useHistory} from 'react-router-dom'
 import {useReactContext} from '../../contexts/ReactContext'
-
+import firebase from 'firebase'
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import Alert from '@material-ui/lab/Alert'
 import {Avatar, Button, CssBaseline, TextField, Link, Grid,  Typography, Container} from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -22,13 +23,25 @@ export default function SignUp() {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
+  // Configure FirebaseUI.
+const uiConfig = {
+  // Popup signin flow rather than redirect flow.
+  signInFlow: 'popup',
+  // We will display Google and Facebook as auth providers.
+  signInOptions: [
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    firebase.auth.FacebookAuthProvider.PROVIDER_ID
+  ],
+  callbacks: {
+    // Avoid redirects after sign-in.
+    signInSuccessWithAuthResult: () => {
+      history.goBack()
+    },
+  },
+};
 
   async function handleSubmit(e) {
     e.preventDefault()
-
-
-
-    
     try{
         setError('')
         setLoading(true)
@@ -55,7 +68,7 @@ export default function SignUp() {
         </Typography>
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <Grid container spacing={2}>
-            <Grid xs={12}>
+            <Grid item xs={12}>
           {error ? (<Alert severity="warning">{error}</Alert>) : ''}
             </Grid>
             <Grid item xs={12}>
@@ -94,6 +107,14 @@ export default function SignUp() {
           >
             Log In
           </Button>
+
+          <Grid container justify='center'>
+            <Grid item>
+          <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+              
+            </Grid>
+          </Grid>
+
           <Grid container justify="flex-end">
             <Grid item>
               <Link href="/forgot-password" variant="body2">

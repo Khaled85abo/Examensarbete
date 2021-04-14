@@ -49,7 +49,7 @@ export default function SignUp() {
         </Typography>
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <Grid container spacing={2}>
-            <Grid xs={12}>
+            <Grid item xs={12}>
           {error ? (<Alert severity="warning">{error}</Alert>) : ''}
             </Grid>
             <Grid item xs={12}>

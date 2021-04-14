@@ -1,5 +1,4 @@
-import { createMuiTheme, makeStyles} from '@material-ui/core';
-
+import { createMuiTheme, makeStyles } from "@material-ui/core";
 
 // export const theme = createMuiTheme({
 //   typography: {
@@ -37,48 +36,28 @@ import { createMuiTheme, makeStyles} from '@material-ui/core';
 
 const drawerWidth = 0;
 
-
 export const useGlobalStyles = makeStyles((theme) => ({
   appBar: {
     borderBottom: `1px solid ${theme.palette.divider}`,
   },
-   toolbar: theme.mixins.toolbar,
+  toolbar: theme.mixins.toolbar,
 
-
- 
-  confirmationHeader: {
-    margin: '20px auto',
-    letterSpacing: '1,5px',
-  },
   // link: {
   //   margin: '1rem',
   // },
   main: {
-    padding: '1rem',
+    padding: "1rem",
   },
   largeImage: {
-    maxWidth: '50rem',
-    width: '100%',
-  },
-  mt1: {
-    marginTop: '1rem !important',
-  },
-  p1: {
-    padding: '1rem !important',
+    maxWidth: "50rem",
+    width: "100%",
   },
   link: {
-    color: 'black',
-    '&:hover': {
-      color: 'green',
-      textDecoration: 'none',
-      cursor: 'pointer',
+    color: "black",
+    "&:hover": {
+      color: "green",
+      textDecoration: "none",
+      cursor: "pointer",
     },
   },
-
-
-
-
-
-
-
 }));

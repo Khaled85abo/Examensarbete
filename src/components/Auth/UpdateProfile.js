@@ -83,7 +83,7 @@ function handleSubmit(e){
                 autoComplete="lname"
               />
             </Grid> */}
-            <Grid xs={12}>
+            <Grid item xs={12}>
           {error ? (<Alert severity="warning">{error}</Alert>) : ''}
             </Grid>
             <Grid item xs={12}>

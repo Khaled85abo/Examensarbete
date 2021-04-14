@@ -26,3 +26,5 @@ $ npm install
 $ npm start
 ```
 
+Products
+![Products](./src/assets/)

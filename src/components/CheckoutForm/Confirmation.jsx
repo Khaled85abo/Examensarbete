@@ -1,4 +1,4 @@
-import { Alert } from '@material-ui/lab';
+import { Alert } from "@material-ui/lab";
 import {
   Card,
   Grid,
@@ -12,134 +12,128 @@ import {
   TableHead,
   TableRow,
   Typography,
-} from '@material-ui/core';
+} from "@material-ui/core";
 
-import {useGlobalStyles} from '../../utils/styles'
-
+import useStyles from "./checkoutStyels";
 function Confirmation() {
- 
-    const classes = useGlobalStyles();
-    const order = JSON.parse(localStorage.getItem('order_receipt')) 
-    console.log(order)
-
-
+  const classes = useStyles();
+  const order = JSON.parse(localStorage.getItem("order_receipt"));
+  console.log(order);
 
   return (
-
-
     <>
-        <div className={classes.toolbar} />
+      <div className={classes.toolbar} />
 
-      {!order ? (
+      {!order || order === undefined ? (
         <Alert icon={false} severity="error">
           No order found.
         </Alert>
       ) : (
-        <Grid container >
-
-
-          <Typography  variant="h5" className={classes.confirmationHeader}>
-            Your order id: {order.id}
+        <Grid container md={9} className={classes.centerGrid}>
+          <Typography
+            variant="h5"
+            align="center"
+            className={classes.confirmationHeader}
+          >
+            Your order id: {order.customer_reference}
           </Typography>
-          
-            <Grid container spacing={1}>
-              <Grid item md={9}>
 
+          <Grid container spacing={1}>
+            <Grid item xs={12} md={8}>
               {/* <Grow in={checked} {...(checked ? { timeout: 1000 } : {})}> */}
-              <Grow in {...({ timeout: 1000 } )}>
-                    <Card className={classes.p1}>
-                        <Typography variant="h6" component="h6">
-                            Customer details
-                        </Typography>
-                        <Typography>
-                            {order.customer.firstname} {order.customer.lastname}
-                        </Typography>
-                        <Typography>{order.customer.email}</Typography>
-                    </Card>
-                </Grow>
+              <Grow in {...{ timeout: 1000 }}>
+                <Card className={classes.p1}>
+                  <Typography variant="h6" component="h6">
+                    Customer details
+                  </Typography>
+                  <Typography>
+                    {order.customer.firstname} {order.customer.lastname}
+                  </Typography>
+                  <Typography>{order.customer.email}</Typography>
+                </Card>
+              </Grow>
 
-                <Grow in {...( { timeout: 1500 } )}>
-                    <Card className={[classes.p1, classes.mt1]}>
-                      <Typography variant="h6" component="h6">
-                          Shipping details
-                      </Typography>
-                      <Typography>{order.shipping.name}</Typography>
-                      <Typography>{order.shipping.street}</Typography>
+              <Grow in {...{ timeout: 1500 }}>
+                <Card className={[classes.p1, classes.mt1]}>
+                  <Typography variant="h6" component="h6">
+                    Shipping details
+                  </Typography>
+                  <Typography>{order.shipping.name}</Typography>
+                  <Typography>{order.shipping.street}</Typography>
+                  <Typography>
+                    {order.shipping.town_city}, {order.shipping.county_state}{" "}
+                    {order.shipping.postal_zip_code}
+                  </Typography>
+                  <Typography> {order.shipping.country}</Typography>
+                </Card>
+              </Grow>
+
+              {/* <Grow in={checked} {...(checked ? { timeout: 2500 } : {})}> */}
+              <Grow in {...{ timeout: 2500 }}>
+                <Card className={[classes.p1, classes.mt1]}>
+                  <Typography variant="h6" component="h6">
+                    Payment details
+                  </Typography>
+                  {order.transactions && order.transactions[0] ? (
+                    <>
                       <Typography>
-                          {order.shipping.town_city}, {order.shipping.county_state}{' '}
-                          {order.shipping.postal_zip_code}
+                        {order.transactions[0].gateway_name}
                       </Typography>
-                      <Typography> {order.shipping.country}</Typography>
-                    </Card>
-                </Grow>
+                      <Typography>
+                        Card ending in {order.transactions[0].gateway_reference}
+                      </Typography>
+                      <Typography>
+                        Transaction ID:{" "}
+                        {order.transactions[0].gateway_transaction_id}
+                      </Typography>
+                    </>
+                  ) : (
+                    <Alert>No payment found</Alert>
+                  )}
+                </Card>
+              </Grow>
 
-                {/* <Grow in={checked} {...(checked ? { timeout: 2500 } : {})}> */}
-                <Grow in {...( { timeout: 2500 } )}>
-                    <Card className={[classes.p1, classes.mt1]}>
-                    <Typography variant="h6" component="h6">
-                        Payment details
-                    </Typography>
-                    {order.transactions && order.transactions[0] ? (
-                        <>
-                        <Typography>
-                            {order.transactions[0].gateway_name}
-                        </Typography>
-                        <Typography>
-                            Card ending in {order.transactions[0].gateway_reference}
-                        </Typography>
-                        <Typography>
-                            Transaction ID:{' '}
-                            {order.transactions[0].gateway_transaction_id}
-                        </Typography>
-                        </>
-                    ) : (
-                        <Alert>No payment found</Alert>
-                    )}
-                    </Card>
-                </Grow>
+              {/* <Grow in={checked} {...(checked ? { timeout: 3000 } : {})}> */}
+              <Grow in {...{ timeout: 3000 }}>
+                <Card className={[classes.p1, classes.mt1]}>
+                  <Typography variant="h6" component="h6">
+                    Order Items
+                  </Typography>
+                  <TableContainer>
+                    <Table aria-label="Orders">
+                      <TableHead>
+                        <TableRow>
+                          <TableCell>Name</TableCell>
+                          <TableCell align="right">Quantity</TableCell>
+                          <TableCell align="right">Price</TableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+                        {order.order.line_items.map((cartItem) => (
+                          <TableRow key={cartItem.name}>
+                            <TableCell component="th" scope="row">
+                              {cartItem.name}
+                            </TableCell>
+                            <TableCell align="right">
+                              {cartItem.quantity}
+                            </TableCell>
+                            <TableCell align="right">
+                              {cartItem.price.formatted_with_symbol}
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+                </Card>
+              </Grow>
+            </Grid>
 
-                {/* <Grow in={checked} {...(checked ? { timeout: 3000 } : {})}> */}
-                <Grow in {...( { timeout: 3000 } )}>
-                    <Card className={[classes.p1, classes.mt1]}>
-                    <Typography variant="h6" component="h6">
-                        Order Items
-                    </Typography>
-                    <TableContainer>
-                        <Table aria-label="Orders">
-                        <TableHead>
-                            <TableRow>
-                            <TableCell>Name</TableCell>
-                            <TableCell align="right">Quantity</TableCell>
-                            <TableCell align="right">Price</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {order.order.line_items.map((cartItem) => (
-                            <TableRow key={cartItem.name}>
-                                <TableCell component="th" scope="row">
-                                {cartItem.name}
-                                </TableCell>
-                                <TableCell align="right">
-                                {cartItem.quantity}
-                                </TableCell>
-                                <TableCell align="right">
-                                {cartItem.price.formatted_with_symbol}
-                                </TableCell>
-                            </TableRow>
-                            ))}
-                        </TableBody>
-                        </Table>
-                    </TableContainer>
-                    </Card>
-                </Grow>
-
-              </Grid>
-
-              {/* <Grow in={checked} {...(checked ? { timeout: 3500 } : {})}> */}
-              <Grow in {...( { timeout: 3500 } )}>
-              <Grid item md={3} xs={12}>
+            {/* <Grow in={checked} {...(checked ? { timeout: 3500 } : {})}> */}
+            <Grow in {...{ timeout: 3500 }}>
+              <Grid item md={4} xs={12}>
                 <Card>
-                  <Typography variant="h6" component="h6" align='center'>
+                  <Typography variant="h6" component="h6" align="center">
                     Order Summary
                   </Typography>
                   <List>
@@ -206,17 +200,11 @@ function Confirmation() {
                   </List>
                 </Card>
               </Grid>
-              </Grow>
-
-            </Grid>
-
-        </ Grid>
+            </Grow>
+          </Grid>
+        </Grid>
       )}
-   </>
-  
-  
-
-  
+    </>
   );
 }
-export default Confirmation
+export default Confirmation;
