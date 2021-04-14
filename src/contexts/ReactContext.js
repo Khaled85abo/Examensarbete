@@ -141,7 +141,6 @@ export function AuthProvider({ children }) {
     currentUser,
     loading,
     setLoading,
-    setCart,
     signup,
     login,
     logout,

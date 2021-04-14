@@ -12,7 +12,6 @@ import {
   CssBaseline,
 } from "@material-ui/core";
 
-import { useGlobalStyles } from "../../../utils/styles";
 import useStyles from "../checkoutStyels";
 import AddressForm from "../AddresForm";
 import PaymentForm from "../PaymentFormTestGateway";
@@ -34,10 +33,8 @@ const Checkout = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [checkoutToken, setCkeckoutToken] = useState(null);
   const [shippingData, setShippingData] = useState({});
-  const globalStyles = useGlobalStyles();
   const checkStyles = useStyles();
   const history = useHistory();
-  let renders = 0;
   const generateToken = async () => {
     try {
       const token = await commerce.checkout.generateToken(cart.id, {
@@ -51,9 +48,7 @@ const Checkout = () => {
     }
   };
   useEffect(() => {
-    renders += 1;
     generateToken();
-    console.log(renders);
   }, []);
 
   const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
