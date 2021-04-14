@@ -7,7 +7,7 @@ export default function Copyright() {
   const classes = useGlobalStyles();
   return (
     <Typography
-      variant="h6"
+      variant="body2"
       color="textSecondary"
       align="center"
       className={classes.main}
