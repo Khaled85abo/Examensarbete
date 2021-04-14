@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
@@ -9,9 +9,11 @@ export default makeStyles((theme) => ({
     padding: theme.spacing(4),
   },
   largeImage: {
-    maxHeight: '65vh',
-    maxWidth: '80vw',
-    margin: 'auto',
-  }
- 
+    maxHeight: "65vh",
+    maxWidth: "80vw",
+    margin: "auto",
+  },
+  center: {
+    margin: "auto",
+  },
 }));

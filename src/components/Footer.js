@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useGlobalStyles } from "../utils/styles";
 import { Typography } from "@material-ui/core";
 
-export default function Copyright() {
+export default function Footer() {
   const classes = useGlobalStyles();
   return (
     <Typography
