@@ -26,5 +26,11 @@ $ npm start
 API keys are required
 ```
 
-Products
-![Products](./src/assets/)
+Main Page / Desktop
+![Products](./src/assets/mainpage-desktop.JPG)
+
+Main Page / Mobile
+![Products](./src/assets/mainpage-mobile.JPG)
+
+Main Page / Desktop
+![Products](./src/assets/mainpage-desktop.JPG)
