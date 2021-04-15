@@ -27,9 +27,9 @@ API keys are required
 ```
 
 <h4>Firebase Authentication</h4>
-<img  src="./src/assets/signup.JPG" alt="signup" height="140px">
-<img  src="./src/assets/login.JPG" alt="login" height="140px">
-<img  src="./src/assets/resetpassword.JPG" alt="reset" height="140px">
+<img align='left' src="./src/assets/signup.JPG" alt="signup" height="140px">
+<img align='center' src="./src/assets/login.JPG" alt="login" height="140px">
+<img align='right' src="./src/assets/resetpassword.JPG" alt="reset" height="140px">
 
 Main Page / Mobile
 <img align="right" src="./src/assets/mainpage-mobile.JPG" alt="Stack" height="140px">
