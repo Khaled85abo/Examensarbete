@@ -32,14 +32,57 @@ API keys are required
 <img display='inline-block' src="./src/assets/login.JPG" alt="login" height="240px">
 <img display='inline-block' src="./src/assets/resetpassword.JPG" alt="reset" height="240px">
 </div>
-Main Page / Mobile
-<img  src="./src/assets/mainpage-mobile.JPG" alt="Stack" height="240px">
 
-Main Page / Desktop
-![Products](./src/assets/mainpage-desktop.JPG)
+<h3>MOBILE</h3>
 
-Single Product Page / Desktop
-![Products](./src/assets/mainpage-desktop.JPG)
+Main Page / Single Product Page / Cart / Shipping Info
 
-Single Product Page / Desktop
-![Products](./src/assets/mainpage-desktop.JPG)
+<div>
+<img display='inline-block' src="./src/assets/mainpage-mobile.JPG" alt="Stack" height="240px">
+<img display='inline-block' src="./src/assets/productpage-mobile.JPG" alt="Stack" height="240px">
+<img display='inline-block' src="./src/assets/cartpage-mobile.JPG" alt="Stack" height="240px">
+<img display='inline-block' src="./src/assets/checkoutInfo-1-mobile.JPG" alt="Stack" height="240px">
+<img display='inline-block' src="./src/assets/checkoutInfo-2-mobile.JPG" alt="Stack" height="240px">
+</div>
+
+Payment / Confirmation / More Info About The Order
+
+<div>
+<img display='inline-block' src="./src/assets/payment-1-mobile.JPG" alt="Stack" height="240px">
+<img display='inline-block' src="./src/assets/payment-2-mobile.JPG" alt="Stack" height="240px">
+<img display='inline-block' src="./src/assets/confirmation-mobile.JPG" alt="Stack" height="240px">
+<img display='inline-block' src="./src/assets/moreInfo-1-mobile.JPG" alt="Stack" height="240px">
+<img display='inline-block' src="./src/assets/moreInfo-2-mobile.JPG" alt="Stack" height="240px">
+</div>
+
+Email Sent To Amdin About the Order.
+![Image](./src/assets/email-order-admin.JPG)
+
+Email Sent To Customer About the Order.
+![Image](./src/assets/email-order-customer.JPG)
+
+More Info About The Order In Commerce.js console.
+![Image](./src/assets/order-commerce-js.JPG)
+
+<h3>DESKTOP</h3>
+
+Main Page.
+![Image](./src/assets/mainpage-desktop.JPG)
+
+Single Product Page.
+![Image](./src/assets/productpage-desktop.JPG)
+
+Cart.
+![Image](./src/assets/cartpage-desktop.JPG)
+
+Shipping Info.
+![Image](./src/assets/cartpage-desktop.JPG)
+
+Payment.
+![Image](./src/assets/cartpage-desktop.JPG)
+
+Confirmation.
+![Image](./src/assets/cartpage-desktop.JPG)
+
+More Iformation About the Order.
+![Image](./src/assets/cartpage-desktop.JPG)
