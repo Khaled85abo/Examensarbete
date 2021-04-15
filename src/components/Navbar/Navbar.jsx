@@ -17,20 +17,18 @@ const Navbar = () => {
   const navStyles = useStyles();
   const location = useLocation();
   const history = useHistory();
-  const [setError] = useState("");
+  const [error, setError] = useState("");
   const { currentUser, logout, cart } = useReactContext();
   const totalItems = cart.total_items;
 
   const handleLogout = async () => {
     setError("");
 
-    if (window.confirm("Vill du logga ut?")) {
-      try {
-        await logout();
-        history.push("/");
-      } catch (error) {
-        setError("Faliled to log out");
-      }
+    try {
+      await logout();
+      history.push("/");
+    } catch (error) {
+      setError("Faliled to log out");
     }
   };
 
