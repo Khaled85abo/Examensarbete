@@ -33,9 +33,9 @@ API keys are required
 <img display='inline-block' src="./src/assets/resetpassword.JPG" alt="reset" height="240px">
 </div>
 
-<h3>MOBILE</h3>
+# MOBILE
 
-Main Page / Single Product Page / Cart / Shipping Info
+## Main Page / Single Product Page / Cart / Shipping Info
 
 <div>
 <img display='inline-block' src="./src/assets/mainpage-mobile.JPG" alt="Stack" height="240px">
@@ -45,7 +45,7 @@ Main Page / Single Product Page / Cart / Shipping Info
 <img display='inline-block' src="./src/assets/checkoutInfo-2-mobile.JPG" alt="Stack" height="240px">
 </div>
 
-Payment / Confirmation / More Info About The Order
+## Payment / Confirmation / More Info About The Order
 
 <div>
 <img display='inline-block' src="./src/assets/payment-1-mobile.JPG" alt="Stack" height="240px">
@@ -55,34 +55,44 @@ Payment / Confirmation / More Info About The Order
 <img display='inline-block' src="./src/assets/moreInfo-2-mobile.JPG" alt="Stack" height="240px">
 </div>
 
-Email Sent To Amdin About the Order.
+## Email Sent To Amdin About the Order.
+
 ![Image](./src/assets/email-order-admin.JPG)
 
-Email Sent To Customer About the Order.
+## Email Sent To Customer About the Order.
+
 ![Image](./src/assets/email-order-customer.JPG)
 
-More Info About The Order In Commerce.js console.
+## More Info About The Order In Commerce.js console.
+
 ![Image](./src/assets/order-commerce-js.JPG)
 
-<h3>DESKTOP</h3>
+# DESKTOP
 
-Main Page.
+## Main Page.
+
 ![Image](./src/assets/mainpage-desktop.JPG)
 
-Single Product Page.
+## Single Product Page.
+
 ![Image](./src/assets/productpage-desktop.JPG)
 
-Cart.
+## Cart.
+
 ![Image](./src/assets/cartpage-desktop.JPG)
 
-Shipping Info.
+## Shipping Info.
+
 ![Image](./src/assets/cartpage-desktop.JPG)
 
-Payment.
+## Payment.
+
 ![Image](./src/assets/cartpage-desktop.JPG)
 
-Confirmation.
+## Confirmation.
+
 ![Image](./src/assets/cartpage-desktop.JPG)
 
-More Iformation About the Order.
+## More Iformation About the Order.
+
 ![Image](./src/assets/cartpage-desktop.JPG)
