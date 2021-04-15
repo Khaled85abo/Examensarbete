@@ -83,16 +83,16 @@ API keys are required
 
 ## Shipping Info.
 
-![Image](./src/assets/cartpage-desktop.JPG)
+![Image](./src/assets/checkoutInfo-desktop.JPG)
 
 ## Payment.
 
-![Image](./src/assets/cartpage-desktop.JPG)
+![Image](./src/assets/payment-desktop.JPG)
 
 ## Confirmation.
 
-![Image](./src/assets/cartpage-desktop.JPG)
+![Image](./src/assets/confirmation-desktop.JPG)
 
 ## More Iformation About the Order.
 
-![Image](./src/assets/cartpage-desktop.JPG)
+![Image](./src/assets/moreInfo-desktop.JPG)
