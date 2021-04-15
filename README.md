@@ -27,12 +27,13 @@ API keys are required
 ```
 
 <h4>Firebase Authentication</h4>
-<img align='left' src="./src/assets/signup.JPG" alt="signup" height="140px">
-<img align='center' src="./src/assets/login.JPG" alt="login" height="140px">
-<img align='right' src="./src/assets/resetpassword.JPG" alt="reset" height="140px">
-
+<div>
+<img display='inline-block'  src="./src/assets/signup.JPG" alt="signup" height="240px">
+<img display='inline-block' src="./src/assets/login.JPG" alt="login" height="240px">
+<img display='inline-block' src="./src/assets/resetpassword.JPG" alt="reset" height="240px">
+</div>
 Main Page / Mobile
-<img align="right" src="./src/assets/mainpage-mobile.JPG" alt="Stack" height="140px">
+<img  src="./src/assets/mainpage-mobile.JPG" alt="Stack" height="240px">
 
 Main Page / Desktop
 ![Products](./src/assets/mainpage-desktop.JPG)
