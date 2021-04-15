@@ -26,11 +26,19 @@ $ npm start
 API keys are required
 ```
 
+<h4>Firebase Authentication</h4>
+<img  src="./src/assets/signup.JPG" alt="signup" height="140px">
+<img  src="./src/assets/login.JPG" alt="login" height="140px">
+<img  src="./src/assets/resetpassword.JPG" alt="reset" height="140px">
+
+Main Page / Mobile
+<img align="right" src="./src/assets/mainpage-mobile.JPG" alt="Stack" height="140px">
+
 Main Page / Desktop
 ![Products](./src/assets/mainpage-desktop.JPG)
 
-Main Page / Mobile
-![Products](./src/assets/mainpage-mobile.JPG)
+Single Product Page / Desktop
+![Products](./src/assets/mainpage-desktop.JPG)
 
-Main Page / Desktop
+Single Product Page / Desktop
 ![Products](./src/assets/mainpage-desktop.JPG)
